@@ -54,24 +54,13 @@ public class DijkstraAlgorithm {
 
         while(!unvisitedNodes.isEmpty()){
             VertexDto vertexWithShortestDistance = unvisitedNodes.stream().min(Comparator.comparing(VertexDto::getShortestDistance)).get();
-            /*     for (Edge edge: edges) {
-                if(edge.getSource().getNode()==vertexWithShortestDistance.getNode()){
-                    vertexWithShortestDistance.addNeighbour(edge);
-                }
-            }*/
             Double vertexDistance = vertexWithShortestDistance.getShortestDistance();
-            log.info("-------------------------TESTING---------------------------" + vertexWithShortestDistance.getShortestDistance());
-
             List<EdgeDto> updatedVertices =this.updateTheAdjacentVertices(vertexWithShortestDistance);
             log.info("----------------------------------------------------" + updatedVertices.size());
             VertexDto tempVertexDto = vertexWithShortestDistance;
             VertexDto tempPathDto = startVertex;
             for (EdgeDto edge: updatedVertices) {
-                ///if(visitedNodes.contains(edge.getDestination())) continue;
-               log.info("-------------------------THE NAME---------------------------" + edge.getSource().getName());
-               log.info("-------------------------THE TOSTRING---------------------------" + edge.getDestination().getShortestDistance());
                if(edge.getSource().getNode().equals(startVertex.getNode())){
-                   log.info("***************************************STARTING NODE********************************************************************");
                    if(distance.containsKey(edge.getSource().getNode())){
                        calculatedDistance = edge.getWeight() + distance.get(edge.getSource().getNode());
                        previousVertexWeight = distance.get(edge.getSource().getNode());
@@ -93,9 +82,6 @@ public class DijkstraAlgorithm {
                        unvisitedNodes.removeIf(n -> edge.getSource().getNode().equals(n.getNode()));
                    }else{
                        visitedNodes.stream().forEach(t ->{
-                           System.out.println("_______________________________________" + t.getNode());
-                           System.out.println("_______________________________________" + edge.getSource().getNode());
-                          // t.setShortestDistance(vertexDistance);
                            edge.getSource().setShortestDistance(vertexDistance);
                            if(edge.getSource().getNode() != t.getNode()){
                                t.setShortestDistance(vertexDistance);
@@ -144,7 +130,7 @@ public class DijkstraAlgorithm {
         }
 
         createShortPaths();
-        getShortestPath(startVertex,destinationVertex);
+       // getShortestPath(startVertex,destinationVertex);
         theFinalPath = shortestRoute(startVertex,destinationVertex);
         System.out.println("Shortest Path from " + startVertex.getNode() + " to " + destinationVertex.getNode() + " is " + theFinalPath);
         return 0.0;
@@ -213,7 +199,10 @@ public class DijkstraAlgorithm {
                     shortestDistanceVertex = edge.getDestination();
                     break outerloop;
                 }else{
-                    if(edge.getDestination().getShortestDistance() < weight){
+                    if(edge.getDestination().getShortestDistance() == null)
+                    {
+                        //break;
+                    } else if(edge.getDestination().getShortestDistance() < weight){
                         weight = edge.getDestination().getShortestDistance();
                         shortestDistanceVertex = edge.getDestination();
                     }
@@ -242,7 +231,7 @@ public class DijkstraAlgorithm {
     public List<EdgeDto> updateTheAdjacentVertices(VertexDto startVertex){
         List<EdgeDto> adjacentVertexList = new ArrayList<>();
         for (EdgeDto edge: edges) {
-            if(edge.getSource().getNode() == startVertex.getNode() || edge.getSource().getName().equals(startVertex.getName())){
+            if(edge.getSource().getNode().equals(startVertex.getNode())){
                 adjacentVertexList.add(edge);
             }
         }
@@ -289,82 +278,53 @@ public class DijkstraAlgorithm {
         List<VertexDto> vertexDtos = new ArrayList<>();
         Double minWeight = Double.valueOf(MAX_DISTANCE);
         VertexDto tempDto = new VertexDto();
-        String previousVertex = "";
-
+      //  String previousVertex = "";
+        visitedNodes.remove(0);// removing duplicate start node
         while(!visitedNodes.isEmpty()){
             VertexDto startVertex = visitedNodes.stream().min(Comparator.comparing(VertexDto::getShortestDistance)).get();
-            System.out.println("********************************************************* 1                      " + visitedNodes.size());
-            System.out.println("********************************************************* indexed    " + visitedNodes.get(0));
           VertexDto tempPathDto = new VertexDto();
           List<EdgeDto> updatedVertices;
-   /*       if(vertexDtos.isEmpty()){
-              System.out.println("********************************************************* 2" + vertexDtos.size());
-              updatedVertices = this.updateTheAdjacentVertices(this.getMinVertex());
-              previousVertex = this.getMinVertex().getNode();
-              *//*for (EdgeDto source: updatedVertices) {
-                  edgeDtoList.add(source);
-              }*//*
-          }else{*/
-             // VertexDto startVertex = vertexDtos.stream().min(Comparator.comparing(VertexDto::getShortestDistance)).get();
-              System.out.println("********************************************************* culprit get node :" + startVertex.getNode());
-              System.out.println("********************************************************* culprit  get name:" + startVertex.getName());
-              System.out.println("********************************************************* culprit  get previous vertex" + startVertex.getPreviousVertex());
-              previousVertex = startVertex.getNode();
-              updatedVertices =this.updateTheAdjacentVertices(startVertex);
-              vertexDtos.removeIf(n -> startVertex.getNode()==(n.getNode()));
 
-              vertexDtos.removeIf(n-> startVertex.getNode().equals(startVertex.getPreviousVertex()));
-          //}
+             // previousVertex = startVertex.getNode();
+              updatedVertices =this.updateTheAdjacentVertices(startVertex);
+             // vertexDtos.removeIf(n -> startVertex.getNode()==(n.getNode()));
+
+             // vertexDtos.removeIf(n-> startVertex.getNode().equals(startVertex.getPreviousVertex()));
+
+
+            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++" +this.getMinVertex().getName());
+            System.out.println(this.getMinVertex().getNode());
+/*            if(updatedVertices.size() == 0){
+                visitedNodes.removeIf(n -> this.getMinVertex().getNode() == null);
+            }*/
             if(updatedVertices.size() == 0){
                 visitedNodes
                         .removeIf(n -> this.
                                 getMinVertex()
                                 .getNode()
                                 .equals(n.getNode()) || this.getMinVertex().getName().equals(n.getName()));
-            }
-            for (EdgeDto edge: updatedVertices) {
-                List<EdgeDto> updatedSourceVertices = updatePreviousVertices(edge.getDestination());
-                for (EdgeDto source: updatedSourceVertices) {
-                    source.getDestination().setPreviousVertex(previousVertex);
-                    edgeDtoList.add(source);
-                    if(minWeight > source.getWeight() + edge.getSource().getShortestDistance()){
-                        minWeight = source.getWeight() + edge.getSource().getShortestDistance();
-                        tempDto.setNode(source.getSource().getNode());
+            }else {
+                for (EdgeDto edge: updatedVertices) {
+                    List<EdgeDto> updatedSourceVertices = updatePreviousVertices(edge.getDestination());
+                    for (EdgeDto source: updatedSourceVertices) {
+                        source.getDestination().setPreviousVertex(edge.getSource().getNode());
+                        edgeDtoList.add(source);
+                        if(minWeight > source.getWeight() + edge.getSource().getShortestDistance()){
+                            minWeight = source.getWeight() + edge.getSource().getShortestDistance();
+                            // tempDto.setNode(source.getSource().getNode());
+                        }
                     }
+                    vertexDtos.add(edge.getDestination());
+                    VertexDto finalTempDto = tempDto;
+                    minWeight = Double.valueOf(MAX_DISTANCE);
+                    tempDto = edge.getSource();
+                    // String finalPreviousVertex = previousVertex;
+
                 }
-                vertexDtos.add(edge.getDestination());
-                VertexDto finalTempDto = tempDto;
-                minWeight = Double.valueOf(MAX_DISTANCE);
-                tempDto = edge.getSource();
-                String finalPreviousVertex = previousVertex;
-
-              //  vertexDtos.removeIf(n-> startVertex.getNode().equals(startVertex.getPreviousVertex()));
-             // boolean removed = visitedNodes.removeIf(n ->(edge.getSource().getName().equals(n.getName()))||edge.getSource().getNode().equals(n.getNode()));
-             // if(removed)
-             // break;
-    //          else visitedNodes.removeIf(n -> edge.getSource().getNode().equals(n.getNode()));
-      //            visitedNodes.forEach( t -> System.out.println(" Iterating the remaining nodes   :  " + t.getNode())); break;
-              //  System.out.println(removed);
-                //System.out.println(edge.getSource());
-       //         System.out.println(edge.getSource().getNode());
-             /*   visitedNodes.stream().forEach(t ->{
-                    visitedNodes.removeIf(n -> edge.getSource().getNode().equals(n.getNode()));
-                });*/
-         //       System.out.println("********************************************************* culprit source  " +  edge.getSource().getNode()  + "  " + edge.getSource().getPreviousVertex());
-               /* Iterator<VertexDto> iterator = visitedNodes.iterator();
-                while(iterator.hasNext()){
-                    if(iterator.next().getNode().equals(edge.getSource().getNode())){
-                        iterator.remove();
-                    }else if ( edge.getSource().getNode().equals(edge.getSource().getPreviousVertex())){
-                        iterator.remove();
-                    }*//*else if ( edge.getSource().getPreviousVertex() == null){
-                        iterator.remove();
-                    }*//*
-                }*/
-
+                boolean removed = visitedNodes.removeIf(n ->(startVertex.getNode().equals(n.getNode())));
             }
-            boolean removed = visitedNodes.removeIf(n ->(startVertex.getNode().equals(n.getNode())));
-            previousVertex = "";
+
+            //previousVertex = "";
 
         }
     }
@@ -378,11 +338,14 @@ public class DijkstraAlgorithm {
         }*/
         VertexDto start = source;
         VertexDto end = destination;
-        while(end.getPreviousVertex() != start.getNode()){
+        while(end.getPreviousVertex() != ""){
             theQuickestRoute.add(end.getNode());
             List<EdgeDto> adjacentNodes = adjacentVerticesList(end);
             if(adjacentNodes.isEmpty())break;
-            end = adjacentVerticesList(end).get(0).getSource();
+            else{
+            end = adjacentNodes.get(0).getSource();
+            adjacentVerticesList(end);
+            }
         }
       //  System.out.println(theQuickestRoute);
         Collections.reverse(theQuickestRoute);
@@ -404,6 +367,5 @@ public class DijkstraAlgorithm {
         }
         return adjacentVertexList;
     }
-
 
 }
