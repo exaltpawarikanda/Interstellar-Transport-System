@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface VertexRepository extends JpaRepository<Vertex,Long> {
     Vertex findByNode(String name);
-    Vertex findNodeByNode(String node);
+    Vertex findByName(String node);
     @Query(value = "SELECT * FROM vertex ORDER BY id ASC",nativeQuery = true)
     List<Vertex> findAll();
 }

@@ -37,10 +37,10 @@ public class DijkstraAlgorithm {
         this.SOURCE_VERTEX = startVertex;
         this.DESTINATION_VERTEX = destinationVertex;
 
-        this.calculateShortestPathDistance(SOURCE_VERTEX,DESTINATION_VERTEX);
+       // this.calculateShortestPathDistance(SOURCE_VERTEX,DESTINATION_VERTEX);
     }
 
-    public double calculateShortestPathDistance(VertexDto startVertex,VertexDto destinationVertex){
+    public LinkedList<String> calculateShortestPathDistance(VertexDto startVertex,VertexDto destinationVertex){
         for(VertexDto vertex:nodes) {
             if(vertex.getNode() == startVertex.getNode()){
                 vertex.setShortestDistance(MIN_DISTANCE);
@@ -133,7 +133,7 @@ public class DijkstraAlgorithm {
        // getShortestPath(startVertex,destinationVertex);
         theFinalPath = shortestRoute(startVertex,destinationVertex);
         System.out.println("Shortest Path from " + startVertex.getNode() + " to " + destinationVertex.getNode() + " is " + theFinalPath);
-        return 0.0;
+        return theFinalPath;
 
     }
 

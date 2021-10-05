@@ -21,4 +21,9 @@ public class VertexServiceImpl implements VertexService {
     public List<Vertex> getAllNodes() {
         return vertexRepository.findAll();
     }
+
+    @Override
+    public Vertex getVertexByName(String name) {
+        return vertexRepository.findByName(name);
+    }
 }

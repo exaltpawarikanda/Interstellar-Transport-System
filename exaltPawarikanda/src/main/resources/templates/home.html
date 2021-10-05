@@ -42,35 +42,58 @@
 </nav>
 </br></br></br></br>
 <div class="container">
-    <form>
+    <form th:action="@{/}" th:object="${path}" method="post">
         <div></div>
         <div class="form-row">
-            <div class="col-md-4 mb-6">
+            <div class="col-md-3 mb-6">
             <label for="originPlanet">Origin Planet</label>
-            <select class="custom-select mr-sm-2" id="originPlanet">
-                <option selected>Choose...</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
-        </div>
-            <div class="col-md-4 mb-6">
-            <label for="destinationPlanet">Destination Planet</label>
-            <select class="custom-select mr-sm-2" id="destinationPlanet">
-                <option selected>Choose...</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
-        </div>
-        </div>
-       <!-- <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>--></br></br>
-        <button type="submit" class="btn btn-primary">Submit</button>
+                <input type="hidden" th:field="*{vertexName}" />
+                <input class="custom-select mr-sm-3" id="originPlanet" disabled type="text" th:field="*{vertexName}"/>
 
+            </div>
+            <div class="col-md-3 mb-6">
+            <label for="destinationPlanet">Destination Planet</label>
+                <select id="destinationPlanet" th:field="*{selectedVertex}" class="custom-select mr-sm-2">
+                    <option th:each="v : ${planets}"
+                            th:value="${v.name}"
+                            th:text="${v.name}">
+                    </option>
+                </select>
+        </div>
+            <div class="col-md-1 mb-6">
+                </br>
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Al Traffic</label>
+            </div>
+
+            <div class="col-md-3 mb-4"></br>
+                <button type="submit" class="btn btn-primary">Submit</button>
+         </br></br>
+        </div>
+
+        </div>
     </form>
+    <div>
+        <div th:if="${not #lists.isEmpty(finalPath)}" th:object="${finalPath}" >
+            <div>
+                <h2>Result Table</h2>
+                <table id="planetsTable" class="table table-striped table-bordered">
+                    <thead class="thead-light">
+                    <tr>
+                        <th> Source Planet</th>
+                        <th> Destination Planet</th>
+                        <th> Shortest Route</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td th:text="*{sourceVertex}">Source Planet</a></td>
+                        <td th:text="*{destinationVertex}">Destination Planet</td>
+                        <td th:text="*{thePath}">Shortest Route</td>
+                    </tr>
+                </table>
+
+            </div>
+    </div>
 </div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>

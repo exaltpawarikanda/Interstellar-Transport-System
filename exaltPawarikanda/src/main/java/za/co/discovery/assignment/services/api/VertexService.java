@@ -10,4 +10,5 @@ import java.util.List;
 public interface VertexService {
 
     List<Vertex> getAllNodes();
+    Vertex getVertexByName(String name);
 }

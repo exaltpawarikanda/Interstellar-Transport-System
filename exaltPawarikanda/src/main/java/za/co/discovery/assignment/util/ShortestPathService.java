@@ -17,6 +17,7 @@ import za.co.discovery.assignment.repository.TrafficRepository;
 import za.co.discovery.assignment.repository.VertexRepository;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Slf4j
@@ -36,9 +37,10 @@ public class ShortestPathService {
     public List<Traffic> traffic = new ArrayList<>();
 
 
-   public void initializeGraph(String startVertex,String destinationVertex){
-       this.SOURCE_VERTEX = vertexMapper.vertexToVertexDto(vertexRepository.findByNode(startVertex));
-       this.DESTINATION_VERTEX = vertexMapper.vertexToVertexDto(vertexRepository.findByNode(destinationVertex));
+   public LinkedList<String> initializeGraph(String startVertex, String destinationVertex){
+       System.out.println("!!!!!!!!!!!!!!!!!!!!!!!values sent!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  :" + startVertex + "    :" + destinationVertex);
+       this.SOURCE_VERTEX = vertexMapper.vertexToVertexDto(vertexRepository.findByName(startVertex));
+       this.DESTINATION_VERTEX = vertexMapper.vertexToVertexDto(vertexRepository.findByName(destinationVertex));
        List<Vertex> vertexList = vertexRepository.findAll();
        List<Edge> edgeList = edgeRepository.findAll();
        log.info("************************************************************************************");
@@ -49,7 +51,8 @@ public class ShortestPathService {
        edgeList.forEach(route -> edgeDtos.add(edgeMapper.edgeToEdgeDto(route)));
 
        Graph graph = new Graph(vertexDtos,edgeDtos);
-       new DijkstraAlgorithm(graph,SOURCE_VERTEX,DESTINATION_VERTEX);
+       DijkstraAlgorithm dijkstraAlgorithm = new DijkstraAlgorithm(graph,SOURCE_VERTEX,DESTINATION_VERTEX);
+       return dijkstraAlgorithm.calculateShortestPathDistance(SOURCE_VERTEX,DESTINATION_VERTEX);
    }
 
 
