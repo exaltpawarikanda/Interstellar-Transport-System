@@ -18,6 +18,7 @@ public class DijkstraAlgorithm {
     private ArrayList<VertexDto> visitedNodes = new ArrayList<>();
     private Set<VertexDto> unvisitedNodes = new HashSet<>();
     private Set<VertexDto> leastPathNodes = new HashSet<>();
+    private boolean traffic;
     private Double MIN_DISTANCE = 0.0;
     private int MAX_DISTANCE = Integer.MAX_VALUE;
     private  List<VertexDto> nodes;
@@ -137,48 +138,6 @@ public class DijkstraAlgorithm {
 
     }
 
-
-
-
-
-/*  public LinkedList<String> getPathShortest(VertexDto startVertex,VertexDto destinationVertex){
-
-      while(!visitedNodes.isEmpty()){
-   //       VertexDto vertexWithShortestDistance = unvisitedNodes.stream().min(Comparator.comparing(VertexDto::getShortestDistance)).get();
-
-          List<EdgeDto> updatedVertices =this.updateTheAdjacentVertices(startVertex);
-          for (EdgeDto edge: updatedVertices) {
-
-             *//* if(edge.getSource().getNode().equals(startVertex.getNode())){
-                  if(distance.containsKey(edge.getSource().getNode())){
-                      calculatedDistance = edge.getWeight() + distance.get(edge.getSource().getNode());
-                      previousVertexWeight = distance.get(edge.getSource().getNode());
-                      if(distance.containsKey(edge.getDestination().getNode())){
-                          if(calculatedDistance < distance.get(edge.getDestination().getNode()).doubleValue()){
-                              edge.getDestination().setShortestDistance(calculatedDistance);
-                              unvisitedNodes.stream().forEach(node ->{
-                                  if(node.getNode() == edge.getDestination().getNode()){
-                                      node.setShortestDistance(calculatedDistance);
-                                  }
-                              });
-                          }
-                      }
-                  }
-                  tempVertexDto = edge.getSource();
-
-          }*//*
-
-          System.out.println("*********************************************************" + tempVertexDto);
-          visitedNodes.add(tempVertexDto);
-          VertexDto finalTempVertexDto = tempVertexDto;
-          System.out.println("*********************************************************" + finalTempVertexDto);
-          unvisitedNodes.removeIf(n -> finalTempVertexDto.getNode().equals(n.getNode()));
-          calculatedDistance = 0.0;
-      }
-      }
-
-    }*/
-
     public String getShortestPath(VertexDto startVertex,VertexDto destinationVertex){
         startVertex.setShortestDistance( Double.valueOf(MAX_DISTANCE));
         VertexDto startingVertex = startVertex;
@@ -256,10 +215,6 @@ public class DijkstraAlgorithm {
             }
         }
         return sourceVertexList;
-    }
-
-    public void printDetails(String startVertexNode,String destinationVertex){
-        //System.out.println("Shortest Path from " + startVertexNode + " to " + destinationVertex + " is " + theFinalPath );
     }
 
     public VertexDto getMinVertex(){

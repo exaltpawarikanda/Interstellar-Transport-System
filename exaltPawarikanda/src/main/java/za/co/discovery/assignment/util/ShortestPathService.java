@@ -34,22 +34,33 @@ public class ShortestPathService {
     public  VertexDto DESTINATION_VERTEX;
     public List<VertexDto> vertexDtos = new ArrayList<>();
     public List<EdgeDto> edgeDtos = new ArrayList<>();
-    public List<Traffic> traffic = new ArrayList<>();
+    public List<Traffic> trafficDtos = new ArrayList<>();
 
 
-   public LinkedList<String> initializeGraph(String startVertex, String destinationVertex){
-       System.out.println("!!!!!!!!!!!!!!!!!!!!!!!values sent!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  :" + startVertex + "    :" + destinationVertex);
+   public LinkedList<String> initializeGraph(String startVertex, String destinationVertex,Boolean traffic){
+       System.out.println("**********************************Data Submitted**********************  :" + startVertex + "    :" + destinationVertex + " traffic : " + traffic);
        this.SOURCE_VERTEX = vertexMapper.vertexToVertexDto(vertexRepository.findByName(startVertex));
        this.DESTINATION_VERTEX = vertexMapper.vertexToVertexDto(vertexRepository.findByName(destinationVertex));
        List<Vertex> vertexList = vertexRepository.findAll();
        List<Edge> edgeList = edgeRepository.findAll();
-       log.info("************************************************************************************");
-       log.info("******************Vertex List**************************************"+vertexList);
-       log.info("******************Vertex DTOs**************************************"+vertexDtos);
-       log.info("************************************************************************************");
+       List<Traffic> trafficList = trafficRepository.findAll();
        vertexList.forEach(vertex -> vertexDtos.add(vertexMapper.vertexToVertexDto(vertex)));
-       edgeList.forEach(route -> edgeDtos.add(edgeMapper.edgeToEdgeDto(route)));
 
+       if(traffic){
+           System.out.println("********************************** Adding Traffic Distance **********************  :" );
+           for (Edge edge: edgeList) {
+               for (Traffic traffic1: trafficList) {
+                   if(edge.getStartNode().equals(traffic1.getStartNode()) && edge.getEndNode().equals(traffic1.getEndNode())){
+                     edge.setDistance(edge.getDistance() + traffic1.getTrafficDelay());
+                     edgeDtos.add(edgeMapper.edgeToEdgeDto(edge));
+                   }
+               }
+           }
+       }
+       else {
+           System.out.println("********************************** NO Traffic Distance **********************  :" );
+           edgeList.forEach(route -> edgeDtos.add(edgeMapper.edgeToEdgeDto(route)));
+       }
        Graph graph = new Graph(vertexDtos,edgeDtos);
        DijkstraAlgorithm dijkstraAlgorithm = new DijkstraAlgorithm(graph,SOURCE_VERTEX,DESTINATION_VERTEX);
        return dijkstraAlgorithm.calculateShortestPathDistance(SOURCE_VERTEX,DESTINATION_VERTEX);

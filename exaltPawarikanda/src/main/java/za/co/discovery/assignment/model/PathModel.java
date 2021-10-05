@@ -17,7 +17,6 @@ public class PathModel implements Serializable {
     private String thePath;
     private String sourceVertex;
     private String destinationVertex;
-    private boolean undirectedGraph;
-    private boolean trafficAllowed;
+    private boolean traffic;
 
 }
