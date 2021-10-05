@@ -6,5 +6,5 @@ import za.co.discovery.assignment.domain.Traffic;
 /**
  * @author Exalt Pawarikanda
  */
-public interface TrafficRepository extends JpaRepository<Traffic,Long> {
+public interface TrafficRepository extends JpaRepository<Traffic,Integer> {
 }

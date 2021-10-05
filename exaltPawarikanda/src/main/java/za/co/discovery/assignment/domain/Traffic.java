@@ -2,9 +2,7 @@ package za.co.discovery.assignment.domain;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author Exalt Pawarikanda
@@ -15,6 +13,7 @@ import javax.persistence.Table;
 public class Traffic {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String startNode;
     private String endNode;

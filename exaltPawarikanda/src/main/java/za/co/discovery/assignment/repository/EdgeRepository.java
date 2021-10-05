@@ -10,6 +10,6 @@ import java.util.List;
  * @author Exalt Pawarikanda
  */
 @Repository
-public interface EdgeRepository extends JpaRepository<Edge,Long> {
+public interface EdgeRepository extends JpaRepository<Edge,Integer> {
     List<Edge> findRoutesByStartNode(String startNode);
 }
