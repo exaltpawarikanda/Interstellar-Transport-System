@@ -14,4 +14,5 @@ public interface VertexService {
     Vertex getVertexByName(String name);
     Vertex createVertex( Vertex newVertex);
     Optional<Vertex> getVertexById(long id);
+    Vertex updateVertex(Long id ,Vertex vertex);
 }

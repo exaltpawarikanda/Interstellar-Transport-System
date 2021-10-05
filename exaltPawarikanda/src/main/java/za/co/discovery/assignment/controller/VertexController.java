@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import za.co.discovery.assignment.domain.Vertex;
 import za.co.discovery.assignment.model.PathModel;
 import za.co.discovery.assignment.services.api.VertexService;
@@ -45,5 +46,18 @@ public class VertexController {
     public String showVertex(@PathVariable Long vertexId, Model model) {
         model.addAttribute("vertex", vertexService.getVertexById(vertexId).get());
         return "planets/view";
+    }
+
+    @GetMapping(value="/edit/{vertexId}")
+    public String editVertex(@PathVariable Long vertexId, Model model) {
+        model.addAttribute("planet", vertexService.getVertexById(vertexId).get());
+        return "/planets/edit";
+    }
+
+    @PostMapping(value="/update/{vertexId}")
+    public String updateVertex(@PathVariable Long vertexId,@ModelAttribute Vertex vertex, Model model, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("vertexId", vertex.getId());
+        vertexService.updateVertex(vertexId,vertex);
+        return "redirect:/nodes";
     }
 }

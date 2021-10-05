@@ -38,4 +38,12 @@ public class VertexServiceImpl implements VertexService {
         return vertexRepository.findById(id);
     }
 
+    @Override
+    public Vertex updateVertex(Long vertexId, Vertex vertex) {
+        Vertex currentVertex = vertexRepository.getById(vertexId);
+           currentVertex.setName(vertex.getName());
+           currentVertex.setNode(vertex.getNode());
+        return vertexRepository.save(currentVertex);
+    }
+
 }
