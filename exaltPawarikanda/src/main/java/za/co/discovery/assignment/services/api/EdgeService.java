@@ -11,8 +11,12 @@ import java.util.Optional;
  */
 public interface EdgeService {
     List<Edge> getAllRoutes();
+
     Edge createEdge(Edge newEdge);
+
     Optional<Edge> getEdgeById(int id);
-    Edge updateEdge(int id ,Edge edge);
+
+    Edge updateEdge(int id, Edge edge);
+
     void deleteEdge(int id);
 }

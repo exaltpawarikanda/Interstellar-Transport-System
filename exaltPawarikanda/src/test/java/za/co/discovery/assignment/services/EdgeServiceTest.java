@@ -1,4 +1,4 @@
-package za.co.discovery.assignment.services.impl;
+package za.co.discovery.assignment.services;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import za.co.discovery.assignment.domain.Edge;
 import za.co.discovery.assignment.repository.EdgeRepository;
+import za.co.discovery.assignment.services.impl.EdgeServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +42,8 @@ class EdgeServiceTest {
     @BeforeEach
     public void setUp() {
         edgeList = new ArrayList<>();
-        edge1 = new Edge(100, "G'","S",20.0);
-        edge2 = new Edge(101, "O'","P",10.0);
+        edge1 = new Edge(100, "G'", "S", 20.0);
+        edge2 = new Edge(101, "O'", "P", 10.0);
         edgeList.add(edge1);
         edgeList.add(edge2);
     }
@@ -51,17 +52,17 @@ class EdgeServiceTest {
     void createEdge() {
         when(edgeRepository.save(any())).thenReturn(edge1);
         edgeService.createEdge(edge1);
-        verify(edgeRepository,times(1)).save(any());
+        verify(edgeRepository, times(1)).save(any());
     }
 
     @Test
     void getAllEdges() {
         edgeRepository.save(edge1);
         when(edgeRepository.findAll()).thenReturn(edgeList);
-        List<Edge> edgeList1 =edgeService.getAllRoutes();
-        assertEquals(edgeList1,edgeList);
-        verify(edgeRepository,times(1)).save(edge1);
-        verify(edgeRepository,times(1)).findAll();
+        List<Edge> edgeList1 = edgeService.getAllRoutes();
+        assertEquals(edgeList1, edgeList);
+        verify(edgeRepository, times(1)).save(edge1);
+        verify(edgeRepository, times(1)).findAll();
     }
 
     @Test

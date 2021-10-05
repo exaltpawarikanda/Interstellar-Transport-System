@@ -17,12 +17,12 @@ public class InterstellarWebService {
 
     private final ShortestPathService shortestPathService;
 
-    public RoutePathResponse findShortestRoute(RoutePathRequest routePathRequest){
+    public RoutePathResponse findShortestRoute(RoutePathRequest routePathRequest) {
         RoutePathResponse routePathResponse = new RoutePathResponse();
-        List<String> path = shortestPathService.initializeGraph(routePathRequest.getStartPlanet(),routePathRequest.getDestinationPlanet(),routePathRequest.isIsTraffic());
+        List<String> path = shortestPathService.initializeGraph(routePathRequest.getStartPlanet(), routePathRequest.getDestinationPlanet(), routePathRequest.isIsTraffic());
         routePathResponse.setStartPlanet(routePathRequest.getStartPlanet());
         routePathResponse.setDestinationPlanet(routePathRequest.getDestinationPlanet());
-        path.stream().forEach(p-> routePathResponse.getRoute().add(p));
+        path.stream().forEach(p -> routePathResponse.getRoute().add(p));
         return routePathResponse;
     }
 }

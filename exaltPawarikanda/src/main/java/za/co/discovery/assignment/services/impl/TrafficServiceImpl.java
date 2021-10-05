@@ -2,7 +2,6 @@ package za.co.discovery.assignment.services.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import za.co.discovery.assignment.domain.Edge;
 import za.co.discovery.assignment.domain.Traffic;
 import za.co.discovery.assignment.repository.TrafficRepository;
 import za.co.discovery.assignment.services.api.TrafficService;
@@ -45,6 +44,6 @@ public class TrafficServiceImpl implements TrafficService {
     @Override
     public void deleteTraffic(int id) {
         Traffic currentTraffic = trafficRepository.getById(id);
-        if(currentTraffic != null)trafficRepository.deleteById(id);
+        if (currentTraffic != null) trafficRepository.deleteById(id);
     }
 }

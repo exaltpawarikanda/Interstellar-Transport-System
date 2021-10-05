@@ -1,4 +1,4 @@
-package za.co.discovery.assignment.services.impl;
+package za.co.discovery.assignment.services;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import za.co.discovery.assignment.domain.Vertex;
 import za.co.discovery.assignment.repository.VertexRepository;
+import za.co.discovery.assignment.services.impl.VertexServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,8 +43,8 @@ class VertexServiceTest {
     @BeforeEach
     public void setUp() {
         vertexList = new ArrayList<>();
-        vertex1 = new Vertex(100L, "G'","New Planet");
-        vertex2 = new Vertex(101L, "O'","Other Planet");
+        vertex1 = new Vertex(100L, "G'", "New Planet");
+        vertex2 = new Vertex(101L, "O'", "Other Planet");
         vertexList.add(vertex1);
         vertexList.add(vertex2);
     }
@@ -52,17 +53,17 @@ class VertexServiceTest {
     void createVertex() {
         when(vertexRepository.save(any())).thenReturn(vertex1);
         vertexService.createVertex(vertex1);
-        verify(vertexRepository,times(1)).save(any());
+        verify(vertexRepository, times(1)).save(any());
     }
 
     @Test
     void getAllNodes() {
         vertexRepository.save(vertex1);
         when(vertexRepository.findAll()).thenReturn(vertexList);
-        List<Vertex> vertexList1 =vertexService.getAllNodes();
-        assertEquals(vertexList1,vertexList);
-        verify(vertexRepository,times(1)).save(vertex1);
-        verify(vertexRepository,times(1)).findAll();
+        List<Vertex> vertexList1 = vertexService.getAllNodes();
+        assertEquals(vertexList1, vertexList);
+        verify(vertexRepository, times(1)).save(vertex1);
+        verify(vertexRepository, times(1)).findAll();
     }
 
     @Test

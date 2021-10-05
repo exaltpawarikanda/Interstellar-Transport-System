@@ -6,7 +6,8 @@
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+    </style>
     <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/datatables/datatables.css">
@@ -16,7 +17,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
         <a th:cellpadding="3px" class="navbar-brand" href="#">Interstellar Transport System</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -49,19 +51,19 @@
         <div class="form-row">
             <div class="col-md-8 mb-6">
                 <label for="planetName"> Planet Name:</label>
-                <input id="planetName"  type="text" th:field="*{name}"/>
+                <input id="planetName" type="text" th:field="*{name}"/>
             </div>
         </div>
         </br>
         <div class="form-row">
             <div class="col-md-8 mb-6">
                 <label for="planetNode"> Planet Node:</label>
-                <input id="planetNode"  type="text" th:field="*{node}"/>
+                <input id="planetNode" type="text" th:field="*{node}"/>
             </div>
         </div>
         <div class="col-md-3 mb-4"></br>
-                <button type="submit" class="btn btn-primary">Submit</button>
-                </br></br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </br></br>
         </div>
 
 
@@ -76,7 +78,7 @@
 
 </script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('#planetsTable').dataTable();
     });
 </script>

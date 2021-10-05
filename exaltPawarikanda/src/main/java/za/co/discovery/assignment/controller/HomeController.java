@@ -24,7 +24,7 @@ public class HomeController {
     private final ShortestPathService shortestPathService;
 
     @GetMapping("/")
-    public String  shortestPathForm(Model model) {
+    public String shortestPathForm(Model model) {
         List<Vertex> planets = vertexService.getAllNodes();
         PathModel pathModel = new PathModel();
         Vertex origin = planets.get(0);
@@ -34,12 +34,6 @@ public class HomeController {
         return "home";
     }
 
-/*
-    @GetMapping("/shortestPath/{startPlanet}/{destinationPlanet}")
-    public String calculateShortestPath(Model model, @PathVariable( "startPlanet") String startPlanet,@PathVariable( "destinationPlanet") String destinationPlanet) {
-     //   shortestPathService.initializeGraph(startPlanet,destinationPlanet);
-        return "home";
-    }*/
     @PostMapping(value = "/")
     public String shortestSubmit(@ModelAttribute PathModel pathModel, Model model) {
         FinalPathModel finalPathModel = FinalPathModel.builder()
@@ -47,7 +41,7 @@ public class HomeController {
                 .destinationVertex(pathModel.getSelectedVertex())
                 .thePath(new LinkedList<>())
                 .build();
-        LinkedList<String> route =shortestPathService.initializeGraph(pathModel.getVertexName(),pathModel.getSelectedVertex(),pathModel.isTraffic());
+        LinkedList<String> route = shortestPathService.initializeGraph(pathModel.getVertexName(), pathModel.getSelectedVertex(), pathModel.isTraffic());
         finalPathModel.setThePath(route);
         List<Vertex> planets = vertexService.getAllNodes();
         pathModel = new PathModel();

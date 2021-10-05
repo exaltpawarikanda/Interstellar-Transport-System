@@ -11,9 +11,14 @@ import java.util.Optional;
 public interface VertexService {
 
     List<Vertex> getAllNodes();
+
     Vertex getVertexByName(String name);
-    Vertex createVertex( Vertex newVertex);
+
+    Vertex createVertex(Vertex newVertex);
+
     Optional<Vertex> getVertexById(long id);
-    Vertex updateVertex(Long id ,Vertex vertex);
+
+    Vertex updateVertex(Long id, Vertex vertex);
+
     void deleteVertex(Long id);
 }

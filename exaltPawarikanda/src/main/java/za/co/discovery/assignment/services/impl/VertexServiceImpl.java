@@ -41,14 +41,14 @@ public class VertexServiceImpl implements VertexService {
     @Override
     public Vertex updateVertex(Long vertexId, Vertex vertex) {
         Vertex currentVertex = vertexRepository.getById(vertexId);
-           currentVertex.setName(vertex.getName());
-           currentVertex.setNode(vertex.getNode());
+        currentVertex.setName(vertex.getName());
+        currentVertex.setNode(vertex.getNode());
         return vertexRepository.save(currentVertex);
     }
 
     @Override
     public void deleteVertex(Long id) {
         Vertex currentVertex = vertexRepository.getById(id);
-        if(currentVertex != null)vertexRepository.deleteById(id);
+        if (currentVertex != null) vertexRepository.deleteById(id);
     }
 }

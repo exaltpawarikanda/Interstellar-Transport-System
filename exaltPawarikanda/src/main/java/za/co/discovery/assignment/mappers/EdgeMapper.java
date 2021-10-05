@@ -1,6 +1,5 @@
 package za.co.discovery.assignment.mappers;
 
-import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import za.co.discovery.assignment.domain.Edge;
@@ -17,7 +16,7 @@ public class EdgeMapper {
     private final VertexMapper vertexMapper;
     private final VertexRepository vertexRepository;
 
-    public EdgeDto edgeToEdgeDto(Edge route){
+    public EdgeDto edgeToEdgeDto(Edge route) {
         EdgeDto edgeDto = EdgeDto.builder()
                 .source(vertexMapper.vertexToVertexDto(vertexRepository.findByNode(route.getStartNode())))
                 .destination(vertexMapper.vertexToVertexDto(vertexRepository.findByNode(route.getEndNode())))
@@ -26,7 +25,7 @@ public class EdgeMapper {
         return edgeDto;
     }
 
-    public Edge edgeDtoToEdge(EdgeDto route){
+    public Edge edgeDtoToEdge(EdgeDto route) {
         Edge edge = Edge.builder()
                 .startNode(route.getSource().getNode())
                 .endNode(route.getDestination().getNode())

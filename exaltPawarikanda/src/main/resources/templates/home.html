@@ -6,7 +6,8 @@
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+    </style>
     <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/datatables/datatables.css">
@@ -16,7 +17,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
         <a th:cellpadding="3px" class="navbar-brand" href="#">Interstellar Transport System</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -46,20 +48,20 @@
         <div></div>
         <div class="form-row">
             <div class="col-md-3 mb-6">
-            <label for="originPlanet">Origin Planet</label>
-                <input type="hidden" th:field="*{vertexName}" />
+                <label for="originPlanet">Origin Planet</label>
+                <input type="hidden" th:field="*{vertexName}"/>
                 <input class="custom-select mr-sm-3" id="originPlanet" disabled type="text" th:field="*{vertexName}"/>
 
             </div>
             <div class="col-md-3 mb-6">
-            <label for="destinationPlanet">Destination Planet</label>
+                <label for="destinationPlanet">Destination Planet</label>
                 <select id="destinationPlanet" th:field="*{selectedVertex}" class="custom-select mr-sm-2">
                     <option th:each="v : ${planets}"
                             th:value="${v.name}"
                             th:text="${v.name}">
                     </option>
                 </select>
-        </div>
+            </div>
             <div class="col-md-1 mb-6">
                 </br>
                 <!--<input type="checkbox" class="form-check-input" id="traffic">
@@ -71,13 +73,13 @@
 
             <div class="col-md-3 mb-4"></br>
                 <button type="submit" class="btn btn-primary">Submit</button>
-         </br></br>
-        </div>
+                </br></br>
+            </div>
 
         </div>
     </form>
     <div>
-        <div th:if="${not #lists.isEmpty(finalPath)}" th:object="${finalPath}" >
+        <div th:if="${not #lists.isEmpty(finalPath)}" th:object="${finalPath}">
             <div>
                 <h2>Result Table</h2>
                 <table id="planetsTable" class="table table-striped table-bordered">
@@ -96,8 +98,8 @@
                 </table>
 
             </div>
+        </div>
     </div>
-</div>
 </div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>

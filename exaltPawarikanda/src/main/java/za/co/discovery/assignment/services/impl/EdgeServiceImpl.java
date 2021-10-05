@@ -3,7 +3,6 @@ package za.co.discovery.assignment.services.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import za.co.discovery.assignment.domain.Edge;
-import za.co.discovery.assignment.domain.Vertex;
 import za.co.discovery.assignment.repository.EdgeRepository;
 import za.co.discovery.assignment.services.api.EdgeService;
 
@@ -46,6 +45,6 @@ public class EdgeServiceImpl implements EdgeService {
     @Override
     public void deleteEdge(int id) {
         Edge currentEdge = edgeRepository.getById(id);
-        if(currentEdge != null)edgeRepository.deleteById(id);
+        if (currentEdge != null) edgeRepository.deleteById(id);
     }
 }

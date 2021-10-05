@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class EdgeDto {
     private VertexDto source;
     private VertexDto destination;
-    private  Double weight;
+    private Double weight;
 
     public EdgeDto(VertexDto source, VertexDto destination, Double distance) {
         this.source = source;

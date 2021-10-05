@@ -1,4 +1,5 @@
 package za.co.discovery.assignment.domain;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

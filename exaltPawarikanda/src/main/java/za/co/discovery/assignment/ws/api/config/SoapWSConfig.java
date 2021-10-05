@@ -1,6 +1,5 @@
 package za.co.discovery.assignment.ws.api.config;
 
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -23,7 +22,7 @@ public class SoapWSConfig {
         MessageDispatcherServlet servlet = new MessageDispatcherServlet();
         servlet.setApplicationContext(applicationContext);
         servlet.setTransformWsdlLocations(true);
-        return new ServletRegistrationBean<>(servlet,"/ws/*");
+        return new ServletRegistrationBean<>(servlet, "/ws/*");
     }
 
     @Bean(name = "interstellarWsdl")

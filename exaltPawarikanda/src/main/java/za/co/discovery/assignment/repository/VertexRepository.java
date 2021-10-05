@@ -11,9 +11,11 @@ import java.util.List;
  * @author Exalt Pawarikanda
  */
 @Repository
-public interface VertexRepository extends JpaRepository<Vertex,Long> {
+public interface VertexRepository extends JpaRepository<Vertex, Long> {
     Vertex findByNode(String name);
+
     Vertex findByName(String node);
-    @Query(value = "SELECT * FROM vertex ORDER BY id ASC",nativeQuery = true)
+
+    @Query(value = "SELECT * FROM vertex ORDER BY id ASC", nativeQuery = true)
     List<Vertex> findAll();
 }

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding= "UTF-8" ?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="http://www.discovery.com/spring/soap/api/interstellarService"
-           xmlns:ts="http://www.discovery.com/spring/soap/api/interstellarService"
-           elementFormDefault="qualified">
+            targetNamespace="http://www.discovery.com/spring/soap/api/interstellarService"
+            elementFormDefault="qualified">
 
     <xsd:element name="RoutePathRequest">
         <xsd:complexType>
@@ -20,7 +19,7 @@
                 <xsd:element name="startPlanet" type="xsd:string"/>
                 <xsd:element name="destinationPlanet" type="xsd:string"/>
                 <xsd:element name="route" type="xsd:string"
-                    maxOccurs="unbounded"/>
+                             maxOccurs="unbounded"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>

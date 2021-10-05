@@ -11,7 +11,7 @@ import za.co.discovery.assignment.dto.VertexDto;
 @Slf4j
 @Component
 public class VertexMapper {
-     public VertexDto vertexToVertexDto(Vertex vertex){
+    public VertexDto vertexToVertexDto(Vertex vertex) {
         VertexDto vertexDto = VertexDto.builder()
                 .name(vertex.getName())
                 .node(vertex.getNode())
@@ -19,7 +19,7 @@ public class VertexMapper {
         return vertexDto;
     }
 
-    public Vertex vertexDtoToVertex(VertexDto vertexDto){
+    public Vertex vertexDtoToVertex(VertexDto vertexDto) {
         Vertex vertex = Vertex.builder()
                 .name(vertexDto.getName())
                 .node(vertexDto.getNode())

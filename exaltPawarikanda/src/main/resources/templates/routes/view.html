@@ -6,7 +6,8 @@
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+    </style>
     <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/datatables/datatables.css">
@@ -16,7 +17,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
         <a th:cellpadding="3px" class="navbar-brand" href="#">Interstellar Transport System</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -42,27 +44,27 @@
 </nav>
 </br></br>
 <div class="container">
-        <div>
-            <h2>Route Details</h2>
-        </div>
+    <div>
+        <h2>Route Details</h2>
+    </div>
     </br>
-        <div class="form-row">
-            <div class="col-md-8 mb-6">
-                <label for="planetOrigin"> Planet Origin:</label>
-                <input id="planetOrigin" disabled type="text" th:field="*{route.startNode}"/>
-            </div>
-            </br></br></br></br>
-            <div class="col-md-8 mb-6">
-                <label for="planetDestination"> Planet Destination:</label>
-                <input id="planetDestination" disabled type="text" th:field="*{route.endNode}"/>
-            </div>
-            </br></br></br></br>
-            <div class="col-md-8 mb-6">
-                <label for="distance"> Distance(Light Years):</label>
-                <input id="distance" disabled type="text" th:field="*{route.distance}"/>
-            </div>
+    <div class="form-row">
+        <div class="col-md-8 mb-6">
+            <label for="planetOrigin"> Planet Origin:</label>
+            <input id="planetOrigin" disabled type="text" th:field="*{route.startNode}"/>
         </div>
-        </br>
+        </br></br></br></br>
+        <div class="col-md-8 mb-6">
+            <label for="planetDestination"> Planet Destination:</label>
+            <input id="planetDestination" disabled type="text" th:field="*{route.endNode}"/>
+        </div>
+        </br></br></br></br>
+        <div class="col-md-8 mb-6">
+            <label for="distance"> Distance(Light Years):</label>
+            <input id="distance" disabled type="text" th:field="*{route.distance}"/>
+        </div>
+    </div>
+    </br>
 </div>
 </body>
 
@@ -73,7 +75,7 @@
 
 </script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('#planetsTable').dataTable();
     });
 </script>

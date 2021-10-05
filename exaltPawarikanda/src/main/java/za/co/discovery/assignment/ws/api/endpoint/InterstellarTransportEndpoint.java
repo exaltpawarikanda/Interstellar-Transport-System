@@ -16,12 +16,12 @@ import za.co.discovery.assignment.ws.api.service.InterstellarWebService;
 @Endpoint
 public class InterstellarTransportEndpoint {
 
-    private static final String NAMESPACE ="http://www.discovery.com/spring/soap/api/interstellarService";
+    private static final String NAMESPACE = "http://www.discovery.com/spring/soap/api/interstellarService";
     private final InterstellarWebService interstellarWebService;
 
-    @PayloadRoot(namespace = NAMESPACE,localPart = "RoutePathRequest")
+    @PayloadRoot(namespace = NAMESPACE, localPart = "RoutePathRequest")
     @ResponsePayload
-    public RoutePathResponse getShortestRoute(@RequestPayload RoutePathRequest request){
+    public RoutePathResponse getShortestRoute(@RequestPayload RoutePathRequest request) {
         return interstellarWebService.findShortestRoute(request);
     }
 }

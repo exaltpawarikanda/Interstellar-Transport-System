@@ -29,23 +29,20 @@ public class ExcelReaderService {
 
 
     @PostConstruct
-    public void loadInitialData(){
+    public void loadInitialData() {
         try {
             Workbook workbook = WorkbookFactory.create(new ClassPathResource("interstellar.xlsx").getInputStream());
             DataFormatter dataFormatter = new DataFormatter();
             workbook.forEach(sheet -> {
-                log.info("sheet name is :" + sheet.getSheetName());
-                if(sheet.getSheetName().equalsIgnoreCase("Planet Names")) {
-                    log.info("**********************************Loading Nodes**************************************************");
-
+                if (sheet.getSheetName().equalsIgnoreCase("Planet Names")) {
                     sheet.forEach(row -> {
-                        if(row.getRowNum() != 0) {
+                        if (row.getRowNum() != 0) {
                             Vertex planets = new Vertex();
                             row.forEach(cell -> {
                                 String cellValue = dataFormatter.formatCellValue(cell);
-                                if(planets.getNode() == null) {
+                                if (planets.getNode() == null) {
                                     planets.setNode(cellValue);
-                                } else if(planets.getName() == null) {
+                                } else if (planets.getName() == null) {
                                     planets.setName(cellValue);
                                 }
                                 vertexRepository.save(planets);
@@ -53,40 +50,38 @@ public class ExcelReaderService {
                         }
                     });
 
-                } else if(sheet.getSheetName().equalsIgnoreCase("Routes")) {
-                    log.info("************************************Loading Routes************************************************");
+                } else if (sheet.getSheetName().equalsIgnoreCase("Routes")) {
                     sheet.forEach((row -> {
-                        if(row.getRowNum() != 0) {
+                        if (row.getRowNum() != 0) {
                             Edge routes = new Edge();
                             row.forEach(cell -> {
                                 String cellValue = dataFormatter.formatCellValue(cell);
-                                if(routes.getId() == 0) {
+                                if (routes.getId() == 0) {
                                     routes.setId(Integer.parseInt(cellValue));
-                                } else if(routes.getStartNode() == null) {
+                                } else if (routes.getStartNode() == null) {
                                     routes.setStartNode(cellValue);
-                                } else if(routes.getEndNode() == null) {
+                                } else if (routes.getEndNode() == null) {
                                     routes.setEndNode(cellValue);
-                                } else if( routes.getDistance() == null) {
+                                } else if (routes.getDistance() == null) {
                                     routes.setDistance(Double.parseDouble(cellValue));
                                 }
                                 edgeRepository.save(routes);
                             });
                         }
                     }));
-                }else if(sheet.getSheetName().equalsIgnoreCase("Traffic")) {
-                    log.info("************************************Loading Traffic************************************************");
+                } else if (sheet.getSheetName().equalsIgnoreCase("Traffic")) {
                     sheet.forEach((row -> {
-                        if(row.getRowNum() != 0) {
+                        if (row.getRowNum() != 0) {
                             Traffic traffic = new Traffic();
                             row.forEach(cell -> {
                                 String cellValue = dataFormatter.formatCellValue(cell);
-                                if(traffic.getId() == 0) {
+                                if (traffic.getId() == 0) {
                                     traffic.setId(Integer.parseInt(cellValue));
-                                } else if(traffic.getStartNode() == null) {
+                                } else if (traffic.getStartNode() == null) {
                                     traffic.setStartNode(cellValue);
-                                } else if(traffic.getEndNode() == null) {
+                                } else if (traffic.getEndNode() == null) {
                                     traffic.setEndNode(cellValue);
-                                } else if(traffic.getTrafficDelay() == null) {
+                                } else if (traffic.getTrafficDelay() == null) {
                                     traffic.setTrafficDelay(Double.parseDouble(cellValue));
                                 }
                                 trafficRepository.save(traffic);
@@ -96,9 +91,7 @@ public class ExcelReaderService {
                 }
             });
             workbook.close();
-            log.info("************************************************************************************Done workbook closed!!");
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
