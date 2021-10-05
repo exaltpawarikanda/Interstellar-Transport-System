@@ -15,4 +15,5 @@ public interface VertexService {
     Vertex createVertex( Vertex newVertex);
     Optional<Vertex> getVertexById(long id);
     Vertex updateVertex(Long id ,Vertex vertex);
+    void deleteVertex(Long id);
 }

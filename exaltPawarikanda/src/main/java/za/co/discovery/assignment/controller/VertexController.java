@@ -60,4 +60,10 @@ public class VertexController {
         vertexService.updateVertex(vertexId,vertex);
         return "redirect:/nodes";
     }
+
+    @RequestMapping(value="/delete/{vertexId}")
+    public String deleteVertex(@PathVariable Long vertexId) {
+        vertexService.deleteVertex(vertexId);
+        return "redirect:/nodes";
+    }
 }

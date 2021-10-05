@@ -46,4 +46,9 @@ public class VertexServiceImpl implements VertexService {
         return vertexRepository.save(currentVertex);
     }
 
+    @Override
+    public void deleteVertex(Long id) {
+        Vertex currentVertex = vertexRepository.getById(id);
+        if(currentVertex != null)vertexRepository.deleteById(id);
+    }
 }
