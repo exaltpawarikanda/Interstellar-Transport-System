@@ -50,7 +50,7 @@ public class TrafficController {
         return "/traffic/edit";
     }
 
-    @PostMapping(value="/update/{trafficId}")
+    @RequestMapping(value="/update/{trafficId}")
     public String updateTraffic(@PathVariable int trafficId,@ModelAttribute Traffic traffic, Model model) {
         trafficService.updateTraffic(trafficId,traffic);
         return "redirect:/traffic";

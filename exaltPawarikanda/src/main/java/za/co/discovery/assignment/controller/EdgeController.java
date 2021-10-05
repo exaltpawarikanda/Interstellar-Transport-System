@@ -39,26 +39,27 @@ public class EdgeController {
     }
 
     @GetMapping(value="/view/{routeId}")
-    public String showRoute(@PathVariable int routeId, Model model) {
+    public String showRoute(@PathVariable("routeId") int routeId, Model model) {
         model.addAttribute("route", edgeService.getEdgeById(routeId).get());
         return "routes/view";
     }
 
     @GetMapping(value="/edit/{routeId}")
-    public String editRoute(@PathVariable int routeId, Model model) {
+    public String editRoute(@PathVariable("routeId") int routeId, Model model) {
         model.addAttribute("route", edgeService.getEdgeById(routeId).get());
         return "/routes/edit";
     }
 
-    @PostMapping(value="/update/{routeId}")
-    public String updateRoute(@PathVariable int routeId,@ModelAttribute Edge edge, Model model) {
+    @RequestMapping(value="/update/{routeId}")
+    public String updateRoute(@PathVariable("routeId") int routeId,@ModelAttribute Edge edge, Model model) {
         edgeService.updateEdge(routeId,edge);
         return "redirect:/routes";
     }
 
     @RequestMapping(value="/delete/{routeId}")
-    public String deleteRoute(@PathVariable int routeId) {
+    public String deleteRoute(@PathVariable("routeId") int routeId) {
         edgeService.deleteEdge(routeId);
         return "redirect:/routes";
     }
+
 }

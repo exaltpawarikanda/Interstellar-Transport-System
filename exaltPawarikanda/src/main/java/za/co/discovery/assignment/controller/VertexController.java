@@ -54,7 +54,7 @@ public class VertexController {
         return "/planets/edit";
     }
 
-    @PostMapping(value="/update/{vertexId}")
+    @RequestMapping(value="/update/{vertexId}")
     public String updateVertex(@PathVariable Long vertexId,@ModelAttribute Vertex vertex, Model model, RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("vertexId", vertex.getId());
         vertexService.updateVertex(vertexId,vertex);

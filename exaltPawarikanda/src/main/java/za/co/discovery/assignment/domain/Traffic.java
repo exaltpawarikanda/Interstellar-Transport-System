@@ -1,13 +1,19 @@
 package za.co.discovery.assignment.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 /**
  * @author Exalt Pawarikanda
  */
+@Builder
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "traffic")
 public class Traffic {
