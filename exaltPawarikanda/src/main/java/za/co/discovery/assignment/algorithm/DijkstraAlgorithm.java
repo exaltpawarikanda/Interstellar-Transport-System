@@ -339,7 +339,7 @@ public class DijkstraAlgorithm {
         VertexDto start = source;
         VertexDto end = destination;
         while(end.getPreviousVertex() != ""){
-            theQuickestRoute.add(end.getNode());
+            theQuickestRoute.add(end.getName());
             List<EdgeDto> adjacentNodes = adjacentVerticesList(end);
             if(adjacentNodes.isEmpty())break;
             else{
