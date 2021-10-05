@@ -7,6 +7,7 @@ import za.co.discovery.assignment.repository.VertexRepository;
 import za.co.discovery.assignment.services.api.VertexService;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Exalt Pawarikanda
@@ -30,6 +31,11 @@ public class VertexServiceImpl implements VertexService {
     @Override
     public Vertex createVertex(Vertex newVertex) {
         return vertexRepository.save(newVertex);
+    }
+
+    @Override
+    public Optional<Vertex> getVertexById(long id) {
+        return vertexRepository.findById(id);
     }
 
 }
