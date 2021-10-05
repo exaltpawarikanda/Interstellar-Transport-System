@@ -26,4 +26,10 @@ public class VertexServiceImpl implements VertexService {
     public Vertex getVertexByName(String name) {
         return vertexRepository.findByName(name);
     }
+
+    @Override
+    public Vertex createVertex(Vertex newVertex) {
+        return vertexRepository.save(newVertex);
+    }
+
 }

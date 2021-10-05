@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import za.co.discovery.assignment.domain.Vertex;
@@ -36,8 +37,10 @@ public class VertexController {
     }
 
     @PostMapping(value="/save")
-    public String savePlanet(Model model) {
-        //model.addAttribute("planet", new Vertex());
+    public String savePlanet(Model model, @ModelAttribute Vertex vertex) {
+        //Vertex newPlanet = new Vertex();
+        System.out.println("Passed on Vertex-----------------------------------------" + vertex);
+        vertexService.createVertex(vertex);
         return "redirect:/nodes";
     }
 }
