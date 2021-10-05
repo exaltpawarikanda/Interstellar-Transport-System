@@ -35,8 +35,6 @@ public class VertexController {
 
     @PostMapping(value = "/save")
     public String savePlanet(Model model, @ModelAttribute Vertex vertex) {
-        //Vertex newPlanet = new Vertex();
-        System.out.println("Passed on Vertex-----------------------------------------" + vertex);
         vertexService.createVertex(vertex);
         return "redirect:/nodes";
     }

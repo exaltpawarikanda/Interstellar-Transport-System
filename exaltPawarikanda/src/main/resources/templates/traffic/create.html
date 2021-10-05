@@ -1,47 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Interstellar Transport System</title>
+<head th:replace="fragments/common.html :: headIncludes"></head>
 
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
-    </style>
-    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/datatables/datatables.css">
-</head>
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-    <div class="container">
-        <a th:cellpadding="3px" class="navbar-brand" href="#">Interstellar Transport System</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{/}">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{/nodes}">Planets</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{/routes}">Routes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{/traffic}">Traffic</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<nav th:replace="fragments/common.html" :: navibarIncludes></nav>
 </br></br>
 <div class="container">
     <form th:action="@{/traffic/save}" th:object="${traffic}" method="post">
