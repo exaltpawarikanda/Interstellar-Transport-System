@@ -57,7 +57,6 @@ public class DijkstraAlgorithm {
             VertexDto vertexWithShortestDistance = unvisitedNodes.stream().min(Comparator.comparing(VertexDto::getShortestDistance)).get();
             Double vertexDistance = vertexWithShortestDistance.getShortestDistance();
             List<EdgeDto> updatedVertices =this.updateTheAdjacentVertices(vertexWithShortestDistance);
-            log.info("----------------------------------------------------" + updatedVertices.size());
             VertexDto tempVertexDto = vertexWithShortestDistance;
             VertexDto tempPathDto = startVertex;
             for (EdgeDto edge: updatedVertices) {
@@ -121,11 +120,9 @@ public class DijkstraAlgorithm {
                }
 
             }
-            System.out.println("*********************************************************" + tempVertexDto);
             tempVertexDto.setShortestDistance(vertexDistance);
             visitedNodes.add(tempVertexDto);
             VertexDto finalTempVertexDto = tempVertexDto;
-            System.out.println("*********************************************************" + finalTempVertexDto);
             unvisitedNodes.removeIf(n -> finalTempVertexDto.getNode().equals(n.getNode()));
             calculatedDistance = 0.0;
         }
@@ -133,7 +130,6 @@ public class DijkstraAlgorithm {
         createShortPaths();
        // getShortestPath(startVertex,destinationVertex);
         theFinalPath = shortestRoute(startVertex,destinationVertex);
-        System.out.println("Shortest Path from " + startVertex.getNode() + " to " + destinationVertex.getNode() + " is " + theFinalPath);
         return theFinalPath;
 
     }
@@ -246,10 +242,7 @@ public class DijkstraAlgorithm {
 
              // vertexDtos.removeIf(n-> startVertex.getNode().equals(startVertex.getPreviousVertex()));
 
-
-            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++" +this.getMinVertex().getName());
-            System.out.println(this.getMinVertex().getNode());
-/*            if(updatedVertices.size() == 0){
+            /*            if(updatedVertices.size() == 0){
                 visitedNodes.removeIf(n -> this.getMinVertex().getNode() == null);
             }*/
             if(updatedVertices.size() == 0){

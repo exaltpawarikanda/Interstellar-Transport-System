@@ -34,12 +34,12 @@ public class HomeController {
         return "home";
     }
 
-
+/*
     @GetMapping("/shortestPath/{startPlanet}/{destinationPlanet}")
     public String calculateShortestPath(Model model, @PathVariable( "startPlanet") String startPlanet,@PathVariable( "destinationPlanet") String destinationPlanet) {
      //   shortestPathService.initializeGraph(startPlanet,destinationPlanet);
         return "home";
-    }
+    }*/
     @PostMapping(value = "/")
     public String shortestSubmit(@ModelAttribute PathModel pathModel, Model model) {
         FinalPathModel finalPathModel = FinalPathModel.builder()
@@ -47,34 +47,8 @@ public class HomeController {
                 .destinationVertex(pathModel.getSelectedVertex())
                 .thePath(new LinkedList<>())
                 .build();
-        StringBuilder path = new StringBuilder();
-       /* Graph graph = graphService.selectGraph();
-        if (pathModel.isTrafficAllowed()) {
-            graph.setTrafficAllowed(true);
-        }
-        if (pathModel.isUndirectedGraph()) {
-            graph.setUndirectedGraph(true);
-        }*/
-        //Vertex source = vertexService.getVertexByName(pathModel.getVertexName());
-        //Vertex destination = vertexService.getVertexByName(pathModel.getSelectedVertex());
-        //
         LinkedList<String> route =shortestPathService.initializeGraph(pathModel.getVertexName(),pathModel.getSelectedVertex(),pathModel.isTraffic());
         finalPathModel.setThePath(route);
-       // shortestPathService.run(source);
-   /*     LinkedList<Vertex> paths = shortestPathService.getPath(destination);
-        if (paths != null) {
-            for (Vertex v : paths) {
-                path.append(v.getName() + " (" + v.getVertexId() + ")");
-                path.append("\t");
-            }
-        } else if (source != null && destination != null && source.getVertexId().equals(destination.getVertexId())) {
-            path.append(PATH_NOT_NEEDED + source.getName());
-        } else {
-            path.append(Constants.PATH_NOT_AVAILABLE);
-        }
-        pathModel.setThePath(path.toString());
-        pathModel.setSelectedVertexName(destination.getName());
-        model.addAttribute("shortest", pathModel);*/
         List<Vertex> planets = vertexService.getAllNodes();
         pathModel = new PathModel();
         Vertex origin = planets.get(0);

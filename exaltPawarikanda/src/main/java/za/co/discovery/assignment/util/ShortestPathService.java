@@ -58,7 +58,6 @@ public class ShortestPathService {
            }
        }
        else {
-           System.out.println("********************************** NO Traffic Distance **********************  :" );
            edgeList.forEach(route -> edgeDtos.add(edgeMapper.edgeToEdgeDto(route)));
        }
        Graph graph = new Graph(vertexDtos,edgeDtos);

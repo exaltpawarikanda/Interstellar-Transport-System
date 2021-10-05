@@ -3,8 +3,11 @@ package za.co.discovery.assignment.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import za.co.discovery.assignment.domain.Vertex;
+import za.co.discovery.assignment.model.PathModel;
 import za.co.discovery.assignment.services.api.VertexService;
 
 import java.util.List;
@@ -23,6 +26,18 @@ public class VertexController {
     public String  listAllNodes(Model model) {
         List<Vertex> planets = vertexService.getAllNodes();
         model.addAttribute("planets",planets);
-        return "planets";
+        return "planets/planets";
+    }
+
+    @GetMapping(value="/create")
+    public String createPlanet(Model model) {
+        model.addAttribute("planet", new Vertex());
+        return "planets/create";
+    }
+
+    @PostMapping(value="/save")
+    public String savePlanet(Model model) {
+        //model.addAttribute("planet", new Vertex());
+        return "redirect:/nodes";
     }
 }
