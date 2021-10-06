@@ -31,8 +31,11 @@ public class DijkstraAlgorithm {
         this.distance = new HashMap<>();
         this.DESTINATION_VERTEX = destinationVertex;
     }
-
+/**
+ * Method to calculate and update the distance for each Vertex edge
+ */
     public LinkedList<String> calculateShortestPathDistance(VertexDto startVertex, VertexDto destinationVertex) {
+        /* Updating start vertex with 0.0 and all other vertices with maximum value */
         for (VertexDto vertex : nodes) {
             if (vertex.getNode() == startVertex.getNode()) {
                 Double MIN_DISTANCE = 0.0;
@@ -45,11 +48,14 @@ public class DijkstraAlgorithm {
             unvisitedNodes.add(vertex);
         }
 
+        // Looping all vertices starting from start vertex and for each vertex iterate its edges and update the distance
         while (!unvisitedNodes.isEmpty()) {
             VertexDto vertexWithShortestDistance = unvisitedNodes.stream().min(Comparator.comparing(VertexDto::getShortestDistance)).get();
             Double vertexDistance = vertexWithShortestDistance.getShortestDistance();
+            //Get all edges that are connected to the vertex
             List<EdgeDto> updatedVertices = this.updateTheAdjacentVertices(vertexWithShortestDistance);
             VertexDto tempVertexDto = vertexWithShortestDistance;
+            //Looping the edges connected to Vertex and update the distance
             for (EdgeDto edge : updatedVertices) {
                 if (edge.getSource().getNode().equals(startVertex.getNode())) {
                     if (distance.containsKey(edge.getSource().getNode())) {
@@ -114,7 +120,9 @@ public class DijkstraAlgorithm {
             }
         }
     }
-
+/**
+ * Method to look for edges that are connected to the given Vertex
+ */
     public List<EdgeDto> updateTheAdjacentVertices(VertexDto startVertex) {
         List<EdgeDto> adjacentVertexList = new ArrayList<>();
         for (EdgeDto edge : edges) {
@@ -147,6 +155,9 @@ public class DijkstraAlgorithm {
         return theDto;
     }
 
+    /**
+     * Check all edges connected to the Vertex and set the previousVertex
+     */
     public void createShortPaths() {
         List<VertexDto> vertexDtos = new ArrayList<>();
         Double minWeight = Double.valueOf(MAX_DISTANCE);
@@ -179,7 +190,9 @@ public class DijkstraAlgorithm {
         }
     }
 
-
+/**
+ * Iterate the Vertices from destination vertex
+ */
     public LinkedList<String> shortestRoute(VertexDto source, VertexDto destination) {
         VertexDto start = source;
         VertexDto end = destination;
