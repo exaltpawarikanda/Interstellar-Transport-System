@@ -9,8 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 /**
  * @author Exalt Pawarikanda
@@ -21,14 +19,10 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "vertex")
-public class Vertex  extends BaseEntity{
+public class Vertex {
     @GeneratedValue
     @Id
     private Long id;
-    @NotNull
-    @NotBlank
     private String node;
-    @NotNull
-    @NotBlank
     private String name;
 }

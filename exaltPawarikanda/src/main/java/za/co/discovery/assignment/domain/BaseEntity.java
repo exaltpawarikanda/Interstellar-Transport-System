@@ -17,13 +17,6 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @MappedSuperclass
 public class BaseEntity {
-    public BaseEntity(Long version,
-                      Timestamp createdAt,
-                      Timestamp lastUpdatedAt) {
-        this.version = version;
-        this.createdAt = createdAt;
-        this.lastUpdatedAt = lastUpdatedAt;
-    }
 
     @Version
     private Long version;
