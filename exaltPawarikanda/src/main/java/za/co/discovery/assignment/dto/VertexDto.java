@@ -15,7 +15,7 @@ public class VertexDto {
     private String name;
     private String node;
     private String previousVertex;
-    private Double shortestDistance;
+    private Float shortestDistance;
 
     public VertexDto(String name, String node) {
         this.name = name;

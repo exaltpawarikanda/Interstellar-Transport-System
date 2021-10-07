@@ -42,8 +42,8 @@ class EdgeServiceTest {
     @BeforeEach
     public void setUp() {
         edgeList = new ArrayList<>();
-        edge1 = new Edge(100, "G'", "S", 20.0);
-        edge2 = new Edge(101, "O'", "P", 10.0);
+        edge1 = new Edge(100, "G'", "S", 20.0f);
+        edge2 = new Edge(101, "O'", "P", 10.0f);
         edgeList.add(edge1);
         edgeList.add(edge2);
     }

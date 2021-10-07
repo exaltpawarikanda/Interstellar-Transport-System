@@ -41,7 +41,7 @@ class TrafficControllerTest {
                 .id(300)
                 .startNode("G'")
                 .endNode("X'")
-                .trafficDelay(0.44)
+                .trafficDelay(0.44f)
                 .build();
     }
 
@@ -91,7 +91,7 @@ class TrafficControllerTest {
             .id(300)
             .startNode("G'")
             .endNode("O'")
-            .trafficDelay(0.44)
+            .trafficDelay(0.44f)
             .build();
 
 }

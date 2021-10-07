@@ -43,8 +43,8 @@ class TrafficServiceTest {
     @BeforeEach
     public void setUp() {
         trafficList = new ArrayList<>();
-        traffic1 = new Traffic(100, "G'", "C", 20.0);
-        traffic2 = new Traffic(101, "O'", "X", 10.0);
+        traffic1 = new Traffic(100, "G'", "C", 20.0f);
+        traffic2 = new Traffic(101, "O'", "X", 10.0f);
         trafficList.add(traffic1);
         trafficList.add(traffic2);
     }

@@ -13,9 +13,9 @@ import lombok.NoArgsConstructor;
 public class EdgeDto {
     private VertexDto source;
     private VertexDto destination;
-    private Double weight;
+    private Float weight;
 
-    public EdgeDto(VertexDto source, VertexDto destination, Double distance) {
+    public EdgeDto(VertexDto source, VertexDto destination, Float distance) {
         this.source = source;
         this.destination = destination;
         this.weight = distance;

@@ -43,7 +43,7 @@ class EdgeControllerTest {
                 .id(300)
                 .startNode("G'")
                 .endNode("X'")
-                .distance(0.44)
+                .distance(0.44f)
                 .build();
     }
 
@@ -91,7 +91,7 @@ class EdgeControllerTest {
             .id(300)
             .startNode("G'")
             .endNode("O'")
-            .distance(0.44)
+            .distance(0.44f)
             .build();
 
 }
