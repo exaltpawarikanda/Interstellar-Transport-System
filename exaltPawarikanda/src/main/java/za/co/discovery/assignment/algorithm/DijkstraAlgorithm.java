@@ -16,7 +16,7 @@ public class DijkstraAlgorithm {
     public VertexDto DESTINATION_VERTEX;
     private final ArrayList<VertexDto> visitedNodes = new ArrayList<>();
     private final Set<VertexDto> unvisitedNodes = new HashSet<>();
-    private final int MAX_DISTANCE = Integer.MAX_VALUE;
+    private final Float MAX_DISTANCE = Float.valueOf(Integer.MAX_VALUE);
     private final List<VertexDto> nodes;
     private final List<EdgeDto> edges;
     private final List<EdgeDto> edgeDtoList = new ArrayList<>();
@@ -144,7 +144,7 @@ public class DijkstraAlgorithm {
     }
 
     public VertexDto getMinVertex() {
-        double distance = MAX_DISTANCE;
+        float distance = MAX_DISTANCE;
         VertexDto theDto = new VertexDto();
         for (VertexDto vertexDto : visitedNodes) {
             if (vertexDto.getShortestDistance() < distance) {
