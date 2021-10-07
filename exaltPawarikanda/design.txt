@@ -1,0 +1,21 @@
+
+Considerations:
+
+1.Used the Dijkstra shortest path algorithm as it gives the shortest path form start vertex to all other vertices.
+
+2.Used the Graph and List data structures to implement it.
+
+3.Chose a greed algorithm as it helps to get to the end more quickly.It makes locally optimum choices at each stage in the hope of finding a global optimum
+
+
+
+Assumptions:
+1.All edges have non-negative values.
+
+
+
+Improvements:
+1. Consider use of Belman-Ford algorithm to improve time complexity
+2. Add more test cases
+3. Include input validation
+4. Include Security
