@@ -63,7 +63,7 @@ public class ExcelReaderService {
                                 } else if (routes.getEndNode() == null) {
                                     routes.setEndNode(cellValue);
                                 } else if (routes.getDistance() == null) {
-                                    routes.setDistance(Double.parseDouble(cellValue));
+                                    routes.setDistance((float) cell.getNumericCellValue());
                                 }
                                 edgeRepository.save(routes);
                             });
@@ -82,7 +82,7 @@ public class ExcelReaderService {
                                 } else if (traffic.getEndNode() == null) {
                                     traffic.setEndNode(cellValue);
                                 } else if (traffic.getTrafficDelay() == null) {
-                                    traffic.setTrafficDelay(Double.parseDouble(cellValue));
+                                    traffic.setTrafficDelay((float) cell.getNumericCellValue());
                                 }
                                 trafficRepository.save(traffic);
                             });

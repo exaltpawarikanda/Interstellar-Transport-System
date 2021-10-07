@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Thu Oct 07 08:29:54 SAST 2021:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-017c-5971-ab4f-000007ddc840 
+Thu Oct 07 08:32:57 SAST 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-017c-5974-77dd-00000ce58898 
 on database directory memory:/home/Exalt/discovery/Interstellar-Transport-System/exaltPawarikanda/myDb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@55054057 
 Loaded from file:/home/Exalt/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
 java.vendor=Red Hat, Inc.
@@ -11,6 +11,3 @@ os.arch=amd64
 os.version=5.13.16-200.fc34.x86_64
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Thu Oct 07 08:30:00 SAST 2021:
-Shutting down instance a816c00e-017c-5971-ab4f-000007ddc840 on database directory memory:/home/Exalt/discovery/Interstellar-Transport-System/exaltPawarikanda/myDb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@55054057 

@@ -38,12 +38,12 @@ class EdgeControllerTest {
     Edge validEdgeDto;
 
     @BeforeEach
-    public void setUp(){
-        validEdgeDto= Edge.builder()
+    public void setUp() {
+        validEdgeDto = Edge.builder()
                 .id(300)
                 .startNode("G'")
                 .endNode("X'")
-                .distance(0.44)
+                .distance(0.44f)
                 .build();
     }
 
@@ -60,8 +60,8 @@ class EdgeControllerTest {
 
     @Test
     void getEdgeById() throws Exception {
-      given(edgeService.getEdgeById(300)).willReturn(Optional.ofNullable(validEdgeDto));
-        mockMvc.perform(get("/routes/view/" + 300 )
+        given(edgeService.getEdgeById(300)).willReturn(Optional.ofNullable(validEdgeDto));
+        mockMvc.perform(get("/routes/view/" + 300)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -72,7 +72,7 @@ class EdgeControllerTest {
         Edge edgeDto = updatedEdge;
         String edgeDtoJson = objectMapper.writeValueAsString(edgeDto);
 
-      given(edgeService.updateEdge(300,updatedEdge)).willReturn(validEdgeDto);
+        given(edgeService.updateEdge(300, updatedEdge)).willReturn(validEdgeDto);
 
         mockMvc.perform(put("/routes/update/" + 300)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -81,17 +81,17 @@ class EdgeControllerTest {
     }
 
     @Test
-    void deleteRoute() throws Exception{
+    void deleteRoute() throws Exception {
         mockMvc.perform(delete("/routes/delete/" + 200)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is3xxRedirection());
     }
 
-   Edge updatedEdge = Edge.builder()
-                .id(300)
-                .startNode("G'")
-                .endNode("O'")
-                .distance(0.44)
-                .build();
+    Edge updatedEdge = Edge.builder()
+            .id(300)
+            .startNode("G'")
+            .endNode("O'")
+            .distance(0.44f)
+            .build();
 
 }
