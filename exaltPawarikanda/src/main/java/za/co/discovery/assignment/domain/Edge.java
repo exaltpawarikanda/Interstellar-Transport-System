@@ -23,5 +23,5 @@ public class Edge {
     private int id;
     private String startNode;
     private String endNode;
-    private Float distance;
+    private Double distance;
 }

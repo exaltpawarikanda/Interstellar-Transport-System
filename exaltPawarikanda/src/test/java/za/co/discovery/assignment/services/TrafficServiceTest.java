@@ -21,7 +21,6 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-
 /**
  * @author Exalt Pawarikanda
  */
@@ -43,8 +42,8 @@ class TrafficServiceTest {
     @BeforeEach
     public void setUp() {
         trafficList = new ArrayList<>();
-        traffic1 = new Traffic(100, "G'", "C", 20.0f);
-        traffic2 = new Traffic(101, "O'", "X", 10.0f);
+        traffic1 = new Traffic(100, "G'","C",20.0);
+        traffic2 = new Traffic(101, "O'","X",10.0);
         trafficList.add(traffic1);
         trafficList.add(traffic2);
     }
@@ -53,20 +52,20 @@ class TrafficServiceTest {
     void createTraffic() {
         when(trafficRepository.save(any())).thenReturn(traffic1);
         trafficService.createTraffic(traffic1);
-        verify(trafficRepository, times(1)).save(any());
+        verify(trafficRepository,times(1)).save(any());
     }
 
     @Test
     void getAllTraffic() {
         trafficRepository.save(traffic1);
         when(trafficRepository.findAll()).thenReturn(trafficList);
-        List<Traffic> trafficList1 = trafficService.getAllTraffic();
-        assertEquals(trafficList1, trafficList);
-        verify(trafficRepository, times(1)).save(traffic1);
-        verify(trafficRepository, times(1)).findAll();
+        List<Traffic> trafficList1 =trafficService.getAllTraffic();
+        assertEquals(trafficList1,trafficList);
+        verify(trafficRepository,times(1)).save(traffic1);
+        verify(trafficRepository,times(1)).findAll();
     }
 
-    @Test
+  @Test
     void getTrafficById() {
         Mockito.when(trafficRepository.findById(traffic1.getId())).thenReturn(Optional.ofNullable(traffic1));
         Assertions.assertThat(trafficRepository.findById(traffic1.getId()).get()).isEqualTo(traffic1);

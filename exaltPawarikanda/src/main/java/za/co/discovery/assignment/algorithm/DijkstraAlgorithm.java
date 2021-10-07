@@ -21,8 +21,8 @@ public class DijkstraAlgorithm {
     private final List<EdgeDto> edges;
     private final List<EdgeDto> edgeDtoList = new ArrayList<>();
     LinkedList<String> theFinalPath = new LinkedList<>();
-    private Float calculatedDistance;
-    private final Map<String, Float> distance;
+    private Double calculatedDistance;
+    private final Map<String, Double> distance;
     LinkedList<String> theQuickestRoute = new LinkedList<>();
 
     public DijkstraAlgorithm(Graph graph, VertexDto startVertex, VertexDto destinationVertex) {
@@ -38,12 +38,12 @@ public class DijkstraAlgorithm {
         /* Updating start vertex with 0.0 and all other vertices with maximum value */
         for (VertexDto vertex : nodes) {
             if (vertex.getNode() == startVertex.getNode()) {
-                Float MIN_DISTANCE = 0.0f;
+                Double MIN_DISTANCE = 0.0;
                 vertex.setShortestDistance(MIN_DISTANCE);
                 distance.put(vertex.getNode(), MIN_DISTANCE);
             } else {
-                vertex.setShortestDistance((float) MAX_DISTANCE);
-                distance.put(vertex.getNode(), (float) MAX_DISTANCE);
+                vertex.setShortestDistance((double) MAX_DISTANCE);
+                distance.put(vertex.getNode(), (double) MAX_DISTANCE);
             }
             unvisitedNodes.add(vertex);
         }
@@ -51,7 +51,7 @@ public class DijkstraAlgorithm {
         // Looping all vertices starting from start vertex and for each vertex iterate its edges and update the distance
         while (!unvisitedNodes.isEmpty()) {
             VertexDto vertexWithShortestDistance = unvisitedNodes.stream().min(Comparator.comparing(VertexDto::getShortestDistance)).get();
-            Float vertexDistance = vertexWithShortestDistance.getShortestDistance();
+            Double vertexDistance = vertexWithShortestDistance.getShortestDistance();
             //Get all edges that are connected to the vertex
             List<EdgeDto> updatedVertices = this.updateTheAdjacentVertices(vertexWithShortestDistance);
             VertexDto tempVertexDto = vertexWithShortestDistance;
@@ -99,7 +99,7 @@ public class DijkstraAlgorithm {
             visitedNodes.add(tempVertexDto);
             VertexDto finalTempVertexDto = tempVertexDto;
             unvisitedNodes.removeIf(n -> finalTempVertexDto.getNode().equals(n.getNode()));
-            calculatedDistance = 0.0f;
+            calculatedDistance = 0.0;
         }
 
         createShortPaths();
@@ -160,7 +160,7 @@ public class DijkstraAlgorithm {
      */
     public void createShortPaths() {
         List<VertexDto> vertexDtos = new ArrayList<>();
-        Float minWeight = ((float)MAX_DISTANCE);
+        Double minWeight = Double.valueOf(MAX_DISTANCE);
         VertexDto tempDto = new VertexDto();
         visitedNodes.remove(0);
         while (!visitedNodes.isEmpty()) {
@@ -182,7 +182,7 @@ public class DijkstraAlgorithm {
                     }
                     vertexDtos.add(edge.getDestination());
                     VertexDto finalTempDto = tempDto;
-                    minWeight = ((float)MAX_DISTANCE);
+                    minWeight = Double.valueOf(MAX_DISTANCE);
                     tempDto = edge.getSource();
                 }
                 visitedNodes.removeIf(n -> (startVertex.getNode().equals(n.getNode())));

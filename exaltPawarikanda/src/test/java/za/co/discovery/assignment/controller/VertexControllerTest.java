@@ -37,8 +37,8 @@ class VertexControllerTest {
     Vertex validVertex;
 
     @BeforeEach
-    public void setUp() {
-        validVertex = Vertex.builder()
+    public void setUp(){
+        validVertex= Vertex.builder()
                 .id(300L)
                 .node("G'")
                 .name("New Planet")
@@ -59,7 +59,7 @@ class VertexControllerTest {
     @Test
     void getVertexById() throws Exception {
         given(vertexService.getVertexById(300)).willReturn(Optional.ofNullable(validVertex));
-        mockMvc.perform(get("/nodes/view/" + 300)
+        mockMvc.perform(get("/nodes/view/" + 300 )
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -70,7 +70,7 @@ class VertexControllerTest {
         Vertex vertex = updatedVertex;
         String edgeDtoJson = objectMapper.writeValueAsString(vertex);
 
-        given(vertexService.updateVertex(300L, updatedVertex)).willReturn(validVertex);
+        given(vertexService.updateVertex(300L,updatedVertex)).willReturn(validVertex);
 
         mockMvc.perform(put("/nodes/update/" + 300)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -79,7 +79,7 @@ class VertexControllerTest {
     }
 
     @Test
-    void deleteVertex() throws Exception {
+    void deleteVertex() throws Exception{
         mockMvc.perform(delete("/nodes/delete/" + 200)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is3xxRedirection());

@@ -23,5 +23,5 @@ public class Traffic {
     private int id;
     private String startNode;
     private String endNode;
-    private Float trafficDelay;
+    private Double trafficDelay;
 }
